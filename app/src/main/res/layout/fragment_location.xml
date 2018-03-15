@@ -28,8 +28,9 @@
         app:layout_constraintStart_toStartOf="@+id/text_location_title"
         app:layout_constraintTop_toBottomOf="@+id/text_location_title" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -39,5 +40,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_location" />
+        app:layout_constraintTop_toBottomOf="@+id/text_location"
+        tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
 </android.support.constraint.ConstraintLayout>
