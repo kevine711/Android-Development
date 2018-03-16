@@ -56,6 +56,7 @@ public class Location extends Fragment implements OnMapReadyCallback {
     private double mLongitude;
     private boolean mGotLatLon = false;
     private boolean mGotMap = false;
+    private View fragView;
 
     public Location() {
         // Required empty public constructor
@@ -91,6 +92,22 @@ public class Location extends Fragment implements OnMapReadyCallback {
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
+
+
+
+
+    }
+
+
+
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        fragView = inflater.inflate(R.layout.fragment_location, container, false);
+
         //check location permission
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION);
@@ -109,22 +126,10 @@ public class Location extends Fragment implements OnMapReadyCallback {
         }
 
 
-
-    }
-
-
-
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_location, container, false);
         SupportMapFragment mapFragment = (SupportMapFragment)this.getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        return view;
+        return fragView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -183,7 +188,7 @@ public class Location extends Fragment implements OnMapReadyCallback {
         mLatitude = location.getLatitude();
         mLongitude = location.getLongitude();
         mGotLatLon = true;
-        TextView locationText = (TextView)getView().findViewById(R.id.text_location);
+        TextView locationText = (TextView)fragView.findViewById(R.id.text_location);
         if(locationText != null)
             locationText.setText("Latitude: " + mLatitude + "\n Longitude: " + mLongitude);
         updateMap();
