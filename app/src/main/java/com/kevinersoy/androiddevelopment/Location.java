@@ -202,7 +202,6 @@ public class Location extends Fragment implements OnMapReadyCallback {
             mMap.addMarker(new MarkerOptions().position(yourLocation).title(getString(R.string.your_location)));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation, 12f));
         }
-
     }
 
     /**
